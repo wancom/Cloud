@@ -17,6 +17,8 @@ jobs:
     - name: Generate cloud
       run: ./cloudgen
     - name: Commit files
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --local user.email "wancom@github"
         git config --local user.name "wancom"
