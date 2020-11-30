@@ -17,7 +17,7 @@ jobs:
     - name: Generate cloud
       run: ./cloudgen
     - name: Install tools
-      run: apt update && apt install -y imagemagick</dev/null
+      run: sudo apt update && sudo apt install -y imagemagick</dev/null
     - name: Convert image
       run: convert *.bmp png/`date +%s`.png
     - name: Commit files
