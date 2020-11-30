@@ -1,6 +1,5 @@
 name: Scheduler
 
-# https://help.github.com/en/github/automating-your-workflow-with-github-actions/events-that-trigger-workflows#scheduled-events-schedule
 on:
   schedule:
     - cron:  '50 8 * * *'
@@ -14,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Compile
-      run: gcc *.c -o cloudgen
+      run: gcc *.c -lm -o cloudgen
     - name: Generate cloud
       run: ./cloudgen
     - name: Commit files
