@@ -16,10 +16,11 @@ jobs:
       run: gcc *.c -lm -o cloudgen
     - name: Generate cloud
       run: ./cloudgen
-    - name: Convert image
+    - name: Convert image and update
       run: |
         convert *.bmp docs/latest.png
         cp docs/latest.png png/`date +%s`.png
+        sed -i -e "s/Latest update: .*/Latest update: `date`/g" docs/index.html
     - name: Commit files
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
