@@ -16,6 +16,10 @@ jobs:
       run: gcc *.c -lm -o cloudgen
     - name: Generate cloud
       run: ./cloudgen
+    - name: Install tools
+      run: apt update && apt install -y imagemagick</dev/null
+    - name: Convert image
+      run: convert *.bmp png/`date +%s`.png
     - name: Commit files
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -26,6 +30,6 @@ jobs:
         git fetch
         git checkout master
         git pull origin master
-        git add .
+        git add png
         git commit -m "Update"
         git push origin master
