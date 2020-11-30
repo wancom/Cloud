@@ -25,6 +25,7 @@ jobs:
         git add .
         git commit -m "Update"
         git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        git remote -v
+        git status
+        git branch
         git pull origin master
         git push origin master
