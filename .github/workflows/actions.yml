@@ -22,10 +22,10 @@ jobs:
       run: |
         git config --local user.email "wancom@github"
         git config --local user.name "wancom"
+        git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+        git fetch
+        git checkout master
+        git pull origin master
         git add .
         git commit -m "Update"
-        git remote set-url origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-        git status
-        git branch
-        git pull origin master
         git push origin master
