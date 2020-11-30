@@ -22,5 +22,5 @@ jobs:
         git config --local user.name "wancom"
         git add .
         git commit -m "Update"
-        git pull
+        git pull origin master
         git push origin master
