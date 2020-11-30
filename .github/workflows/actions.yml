@@ -3,6 +3,7 @@ name: Scheduler
 on:
   schedule:
     - cron:  '30 11 * * *'
+  push:
 
 jobs:
   build:
@@ -15,10 +16,10 @@ jobs:
       run: gcc *.c -lm -o cloudgen
     - name: Generate cloud
       run: ./cloudgen
-    # - name: Install tools
-    #   run: sudo apt update && sudo apt install -y imagemagick</dev/null
     - name: Convert image
-      run: convert *.bmp png/`date +%s`.png
+      run: |
+        convert *.bmp docs/latest.png
+        cp docs/latest.png png/`date +%s`.png
     - name: Commit files
       env: 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -29,6 +30,6 @@ jobs:
         git fetch
         git checkout master
         git pull origin master
-        git add png
+        git add png docs
         git commit -m "Update"
         git push origin master
