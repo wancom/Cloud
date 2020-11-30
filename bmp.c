@@ -2,15 +2,15 @@
 
 long biWidth = 0;             // Width
 long biHeight = 0;            // Height
-const long biSize = 40 + 84;  // F:SizeOfHeader
+long biSize = 40 + 84;  // F:SizeOfHeader
 long biSizeImage = 0;         // SizeOfImg
 
 // Bitmap File Header
 const char *bfType = "BM";           // F:MagicCode
-long bfSize = 14 + biSize + 0;       // FileSize
+long bfSize;// = 14 + biSize + 0;       // FileSize
 const short bfReserved1 = 0;         // F:Res1
 const short bfReserved2 = 0;         // F:Res2
-const long bfOffBits = 14 + biSize;  // F:Offset from head to img data
+long bfOffBits;// = 14 + biSize;  // F:Offset from head to img data
 
 // Bitmap Information Header
 // const long biSize;            // F:SizeOfHeader
@@ -78,4 +78,5 @@ void setBMPSize(int width, int height) {
   biHeight = height;                       // Height
   biSizeImage = 4 * (biWidth * biHeight);  // SizeOfImg
   bfSize = 14 + biSize + biSizeImage;      // FileSize
+  bfOffBits = 14 + biSize;
 }
