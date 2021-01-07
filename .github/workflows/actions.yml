@@ -17,8 +17,8 @@ jobs:
       run: ./cloudgen
     - name: Convert image and update
       run: |
+        mv docs/latest.png png/`date +%s`.png
         convert *.bmp docs/latest.png
-        cp docs/latest.png png/`date +%s`.png
         sed -i -e "s/Latest update: .*/Latest update: `date`/g" docs/index.html
     - name: Commit files
       env: 
